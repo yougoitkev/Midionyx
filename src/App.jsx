@@ -91,10 +91,7 @@ function App() {
             const key = e.key.toUpperCase();
             const keyMap = {
                 '1': 0, '2': 1, '3': 2, '4': 3,
-                '5': 4, '6': 5, '7': 6, '8': 7,
-                '9': 8, '0': 9,
-                'A': 10, 'B': 11, 'C': 12,
-                'D': 13, 'E': 14, 'F': 15
+                '5': 4, '6': 5, '7': 6, '8': 7
             };
 
             if (key in keyMap) {
@@ -136,7 +133,7 @@ function App() {
 
     if (!isLoaded) return <div className="loading">Loading...</div>;
 
-    const currentPads = pages[currentPage]?.pads || Array(16).fill(null);
+    const currentPads = pages[currentPage]?.pads || Array(8).fill(null);
 
     return (
         <div className={`container ${liveMode ? 'live-mode' : ''}`}>

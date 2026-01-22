@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const PAGE_SIZE = 16;
+const PAGE_SIZE = 8;
 
 export function usePages() {
     const [pages, setPages] = useState({});
@@ -28,14 +28,14 @@ export function usePages() {
 
             if (Object.keys(loadedPages).length === 0) {
                 // Initialize default
-                for (let i = 1; i <= 10; i++) {
+                for (let i = 1; i <= 32; i++) {
                     loadedPages[i] = {
                         name: `Page ${i}`,
                         pads: Array(PAGE_SIZE).fill(null),
                         createdAt: Date.now()
                     };
                 }
-                setTotalPages(10);
+                setTotalPages(32);
             } else {
                 setTotalPages(savedTotalPages ? parseInt(savedTotalPages) : Object.keys(loadedPages).length);
             }
@@ -48,7 +48,7 @@ export function usePages() {
             console.error('Error loading pages:', e);
             // Fallback init
             const initialPages = {};
-            for (let i = 1; i <= 10; i++) {
+            for (let i = 1; i <= 32; i++) {
                 initialPages[i] = {
                     name: `Page ${i}`,
                     pads: Array(PAGE_SIZE).fill(null),
@@ -56,7 +56,7 @@ export function usePages() {
                 };
             }
             setPages(initialPages);
-            setTotalPages(10);
+            setTotalPages(32);
             setIsLoaded(true);
         }
     }, []);

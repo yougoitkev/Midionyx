@@ -3,32 +3,24 @@ import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 export function PageNavigation({ currentPage, totalPages, goToPage, nextPage, prevPage, liveMode }) {
     const getPageButtons = () => {
         const buttons = [];
-        const maxVisible = 5;
-        const pagesToShow = new Set([1, totalPages]);
-
-        for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
-            pagesToShow.add(i);
-        }
-
-        const sortedPages = Array.from(pagesToShow).sort((a, b) => a - b);
-        let lastPage = 0;
-
-        sortedPages.forEach(pageNum => {
-            if (pageNum > lastPage + 1) {
-                buttons.push(<span key={`ellipsis-${pageNum}`} style={{ color: '#64748b', padding: '0 5px' }}>...</span>);
-            }
+        // Battery-style: Often A-H, but we have 1-32. 
+        // We'll treat them as a "Cell Matrix" selector.
+        for (let i = 1; i <= totalPages; i++) {
+            // Calculate pseudo "Bank" letter for fun/aesthetic? 
+            // 32 pages is a lot. Let's keep numbers but maybe grouped?
+            // Actually, Battery 4 has a 12x16 grid or similar.
+            // Let's just render clean cells.
             buttons.push(
                 <button
-                    key={pageNum}
-                    className={`page-btn ${pageNum === currentPage ? 'active' : ''}`}
-                    onClick={() => goToPage(pageNum)}
+                    key={i}
+                    className={`page-cell ${i === currentPage ? 'active' : ''}`}
+                    onClick={() => goToPage(i)}
+                    title={`Go to Page ${i}`}
                 >
-                    {pageNum}
+                    {i}
                 </button>
             );
-            lastPage = pageNum;
-        });
-
+        }
         return buttons;
     };
 
@@ -90,11 +82,11 @@ export function PageNavigation({ currentPage, totalPages, goToPage, nextPage, pr
                 {getPageButtons()}
             </div>
             <div className="pages-nav">
-                <button className="nav-btn" onClick={prevPage} disabled={currentPage <= 1} title="Previous Page">←</button>
+                <button className="nav-btn" onClick={prevPage} disabled={currentPage <= 1} title="Previous Page">PRV</button>
                 <div className="page-info">
-                    Page <span>{currentPage}</span> of <span>{totalPages}</span>
+                    PAGE <span>{currentPage}</span> / <span>{totalPages}</span>
                 </div>
-                <button className="nav-btn" onClick={nextPage} disabled={currentPage >= totalPages} title="Next Page">→</button>
+                <button className="nav-btn" onClick={nextPage} disabled={currentPage >= totalPages} title="Next Page">NXT</button>
             </div>
         </div>
     );

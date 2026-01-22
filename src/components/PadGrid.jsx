@@ -18,8 +18,8 @@ export function PadGrid({
     };
 
     const WaveformVisual = () => {
-        // Generate pseudo-random bars for visual interest
-        const bars = [40, 60, 85, 45, 70, 95, 55, 30, 65, 80, 50, 40];
+        // More "Ableton-like" fixed-width bars
+        const bars = [30, 70, 45, 90, 65, 40, 85, 55];
         return (
             <div className="pad-waveform">
                 {bars.map((height, i) => (
@@ -36,26 +36,29 @@ export function PadGrid({
     // No more JS media queries for layout - handled in CSS
     const renderPad = (padData, index) => {
         const selected = isSelected(padData);
+        // Battery style: simple numeric or alphanumeric labels, minimal visual noise
         return (
             <div
                 key={index}
-                className={`pad ${padData ? 'saved' : ''} ${learnMode ? 'learning' : ''} ${selected ? 'selected' : ''}`}
+                className={`pad pad-${index + 1} ${padData ? 'saved' : ''} ${learnMode ? 'learning' : ''} ${selected ? 'selected' : ''}`}
                 onClick={() => onPadClick(index)}
             >
                 {padData && <WaveformVisual />}
                 <div className="pad-content">
                     <div className="pad-header">
                         <span className="pad-num">{index + 1}</span>
-                        <span className="pad-page">P{currentPage}</span>
                     </div>
                     <div className="patch-info">
                         {padData ? (
                             <div className="patch-vals">
-                                <span>B:{padData.bankMSB}:{padData.bankLSB}</span>
-                                <span>P:{padData.program}</span>
+                                <span className="patch-name">{padData.name || 'PATCH'}</span>
+                                <span className="patch-meta">
+                                    <span className="label-tiny">B</span> {padData.bankMSB}:{padData.bankLSB}
+                                    <span className="label-tiny"> P</span> {padData.program}
+                                </span>
                             </div>
                         ) : (
-                            <span className="empty-label">Empty</span>
+                            <span className="empty-label">EMPTY</span>
                         )}
                     </div>
                 </div>

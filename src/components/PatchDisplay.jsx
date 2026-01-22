@@ -53,8 +53,8 @@ export function PatchDisplay({
                     <h3>How to save patches:</h3>
                     <p>1. Click LEARN button to enter Learn Mode<br />
                         2. Use rotary knob on your keyboard to select a patch<br />
-                        3. Click any pad (1-16) to save current patch<br />
-                        4. Switch pages for more storage (16 pads per page)</p>
+                        3. Click any pad (1-8) to save current patch<br />
+                        4. Switch pages for more storage (8 pads per page)</p>
                 </div>
 
                 <div className="page-management">

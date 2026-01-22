@@ -5,7 +5,7 @@ export function Header({ liveMode, toggleLiveMode }) {
                 <div>
                     <h1>MIDIONYX</h1>
                     <p style={{ color: '#38bdf8', fontSize: '18px', fontWeight: '500', marginBottom: '4px' }}>Patch changer with pages</p>
-                    <p>Unlimited patch storage with page system - 16 pads per page</p>
+                    <p>Unlimited patch storage with page system - 8 pads per page</p>
                 </div>
                 <button
                     className={`live-mode-btn ${liveMode ? 'active' : ''}`}
