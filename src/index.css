@@ -29,22 +29,25 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    /* Desktop: fixed */
     box-shadow: none;
 }
 
 .header {
-    padding: 25px 30px;
+    padding: 15px 20px;
+    /* Reduced from 25px 30px */
     background: linear-gradient(90deg, #0f172a 0%, #1e293b 100%);
     border-bottom: 1px solid #334155;
 }
 
 .header h1 {
-    font-size: 28px;
+    font-size: 22px;
+    /* Reduced from 28px */
     color: #38bdf8;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
 }
 
 .header h1 span.brand {
@@ -66,7 +69,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 30px;
+    padding: 10px 20px;
+    /* Reduced from 16px 30px */
     background: rgba(15, 23, 42, 0.8);
     border-bottom: 1px solid #334155;
 }
@@ -110,96 +114,46 @@ body {
 }
 
 .main-controls {
-    padding: 30px;
+    padding: 20px;
+    /* Reduced from 30px */
     display: grid;
     grid-template-columns: 2fr 3fr;
-    gap: 30px;
-}
-
-.current-patch {
-    background: rgba(30, 41, 59, 0.5);
-    border-radius: 16px;
-    padding: 25px;
-    border: 1px solid #475569;
-}
-
-.current-patch h2 {
-    color: #38bdf8;
-    margin-bottom: 20px;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.patch-display {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.patch-number {
-    font-size: 72px;
-    font-weight: 800;
-    color: #38bdf8;
-    text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
-    margin-bottom: 8px;
-}
-
-.patch-name {
-    font-size: 20px;
-    color: #cbd5e1;
-    min-height: 28px;
-}
-
-.bank-info {
-    display: flex;
-    justify-content: center;
     gap: 20px;
-    margin-top: 20px;
+    /* Reduced from 30px */
 }
 
-.bank-item {
-    text-align: center;
-    background: rgba(15, 23, 42, 0.6);
-    padding: 12px 20px;
-    border-radius: 10px;
-    border: 1px solid #475569;
+/* New Patch Display Styles */
+.current-patch-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Reduced from 15px */
+    position: relative;
+    /* Anchor for popups */
 }
 
-.bank-item .label {
-    font-size: 12px;
-    color: #94a3b8;
-    margin-bottom: 4px;
-}
-
-.bank-item .value {
-    font-size: 24px;
-    font-weight: bold;
-    color: #fbbf24;
-}
-
-.learn-controls {
-    text-align: center;
-    margin-top: 25px;
+.learn-strip {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 .learn-btn {
+    flex: 1;
     background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
     color: white;
     border: none;
-    padding: 14px 40px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
-    margin-bottom: 15px;
-    width: 100%;
+    transition: all 0.2s;
 }
 
 .learn-btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
 }
 
@@ -208,6 +162,174 @@ body {
     box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
     animation: pulse 2s infinite;
 }
+
+.info-btn {
+    background: #334155;
+    color: #94a3b8;
+    border: 1px solid #475569;
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.info-btn:hover,
+.info-btn.active {
+    background: #38bdf8;
+    color: #0f172a;
+    border-color: #38bdf8;
+}
+
+/* Instructions Popup */
+.instructions-popup {
+    background: #1e293b;
+    border: 1px solid #38bdf8;
+    padding: 15px;
+    border-radius: 8px;
+    position: absolute;
+    top: 60px;
+    /* Below learn strip */
+    left: 0;
+    right: 0;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.2s ease;
+}
+
+.instructions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 5px;
+}
+
+.instructions-header h3 {
+    color: #38bdf8;
+    font-size: 14px;
+    margin: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: white;
+}
+
+.instructions-popup p {
+    font-size: 12px;
+    color: #cbd5e1;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+/* Patch Data Popup (Floating) */
+.patch-data-popup {
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid #22c55e;
+    /* Green for "Signal" */
+    border-radius: 12px;
+    padding: 20px;
+    position: fixed;
+    /* Float above everything */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    z-index: 2000;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(34, 197, 94, 0.3);
+    animation: zoomIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.patch-data-popup h2 {
+    color: #22c55e;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.patch-big-number {
+    font-size: 48px;
+    /* Reduced from 64px */
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 5px;
+    text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+}
+
+.patch-name-scroll {
+    font-size: 16px;
+    color: #22c55e;
+    margin-bottom: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bank-info-compact {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+}
+
+.bank-col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.bank-col .lbl {
+    font-size: 10px;
+    color: #64748b;
+    font-weight: 700;
+}
+
+.bank-col .val {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Remove old learn buttons if any remain */
 
 .pads-container {
     grid-column: 2;
@@ -321,9 +443,10 @@ body {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
     /* Exactly 2 rows for 8 pads */
-    gap: 8px;
+    gap: 6px;
+    /* Reduced from 8px */
     /* Tighter DAW gap */
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     flex: 1;
     /* Take available space */
 }
@@ -462,13 +585,70 @@ body {
     border-color: #ef4444;
 }
 
-.midi-log-container {
-    grid-column: 1 / -1;
-    background: rgba(15, 23, 42, 0.8);
-    border-radius: 16px;
-    padding: 20px;
+.midi-log-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.midi-log-popup {
+    background: #1e293b;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 12px;
     border: 1px solid #475569;
-    margin-top: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: zoomIn 0.2s ease;
+}
+
+.popup-header {
+    background: #0f172a;
+    padding: 15px 20px;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-header h3 {
+    color: #e2e8f0;
+    margin: 0;
+    font-size: 16px;
+}
+
+.popup-header .close-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.popup-header .close-btn:hover {
+    color: white;
+}
+
+.midi-log-container {
+    /* Reset grid column for popup usage */
+    grid-column: auto;
+    background: transparent;
+    border: none;
+    margin-top: 0;
+    padding: 20px;
+}
+
+.midi-log-container h2 {
+    display: none;
+    /* Hide internal header since we have popup header */
 }
 
 .midi-log-container h2 {
@@ -541,41 +721,22 @@ body {
 
 .footer {
     text-align: center;
-    padding: 20px;
+    padding: 10px;
+    /* Reduced from 20px */
     color: #64748b;
-    font-size: 14px;
+    font-size: 12px;
     border-top: 1px solid #334155;
     background: rgba(15, 23, 42, 0.8);
 }
 
-.instructions {
-    margin-top: 20px;
-    padding: 15px;
-    background: rgba(56, 189, 248, 0.1);
-    border-radius: 10px;
-    border-left: 4px solid #38bdf8;
-}
-
-.instructions h3 {
-    color: #38bdf8;
-    margin-bottom: 10px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.instructions p {
-    font-size: 12px;
-    line-height: 1.5;
-    color: #cbd5e1;
-}
+/* Old instructions removed */
 
 .page-management {
-    margin-top: 20px;
-    padding: 15px;
+    margin-top: 15px;
+    padding: 12px;
+    /* Reduced from 15px */
     background: rgba(139, 92, 246, 0.1);
-    border-radius: 10px;
+    border-radius: 8px;
     border-left: 4px solid #8b5cf6;
 }
 
@@ -623,15 +784,30 @@ body {
 }
 
 @media (max-width: 768px) {
+    body {
+        /* Allow scroll on mobile body if needed, but container usually handles it */
+        overflow: auto;
+        position: relative;
+    }
+
     .container {
         margin: 0;
         border-radius: 0;
         min-height: 100vh;
+        height: auto;
+        /* Allow growth */
+        overflow-y: auto;
+        /* Scrollable on mobile */
         border: none;
+        display: block;
+        /* Stack naturally */
     }
 
     .main-controls {
         padding: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
     }
 
     .patch-number {
@@ -680,11 +856,27 @@ body {
 .container.live-mode .status-bar,
 .container.live-mode .midi-log-container,
 .container.live-mode .current-patch,
+.container.live-mode .current-patch-container,
+/* Hide new container */
 .container.live-mode .log-controls,
-.container.live-mode .pages-controls,
 .container.live-mode .learn-controls,
 .container.live-mode h2 {
     display: none !important;
+}
+
+/* Ensure PageNavigation is visible and styled for Live Mode */
+.container.live-mode .pages-controls {
+    display: flex !important;
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px;
+    background: transparent;
+    border: none;
+}
+
+.container.live-mode .page-buttons {
+    flex: 1;
+    /* Make buttons big enough to tap */
 }
 
 .container.live-mode .main-controls {
@@ -727,14 +919,17 @@ body {
 }
 
 .container.live-mode .pad {
-    /* Reset overrides to match standard pad exactly */
+    /* Reset overrides to match standard pad exactly, but use Orange base */
     aspect-ratio: auto;
-    background: #2a2a2a;
+    background: #ff9900;
+    /* Default Orange */
     border-radius: 4px;
-    border: 1px solid #3a3a3a;
+    border: 1px solid #cc7a00;
     box-shadow: none;
     height: auto;
     width: auto;
+    color: #000;
+    /* Dark text for contrast on Orange/Green */
 }
 
 /* Ensure content scales but keeps look */
@@ -744,15 +939,19 @@ body {
 
 .container.live-mode .pad-num {
     font-size: 14px;
-    color: #888;
+    color: #000;
+    /* Ensure number is dark */
+    font-weight: 700;
 }
 
 .container.live-mode .pad:active,
 .container.live-mode .pad.selected {
-    background: #ff9900;
-    /* Battery Orange highlight */
-    border-color: #ffcc00;
+    background: #22c55e;
+    /* Green for Live Mode */
+    border-color: #4ade80;
     color: #000;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+    /* Ensure Green is distinct from Orange default */
 }
 
 .container.live-mode .patch-info {

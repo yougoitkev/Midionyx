@@ -70,8 +70,8 @@ export function PadGrid({
         <div className="pads-container">
             <h2>
                 <span>Register Pads</span>
-                {children}
             </h2>
+            {children}
 
             <div className="pads-grid" id="padsGrid">
                 {pads.map((padData, index) => renderPad(padData, index))}

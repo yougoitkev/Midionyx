@@ -21,6 +21,7 @@ function App() {
 
     const [learnMode, setLearnMode] = useState(false);
     const [liveMode, setLiveMode] = useState(false);
+    const [showLog, setShowLog] = useState(false);
 
     const toggleLearnMode = () => {
         setLearnMode(!learnMode);
@@ -190,6 +191,7 @@ function App() {
                     createNewPage={createNewPage}
                     renamePage={renamePage}
                     deletePage={deletePage}
+                    setShowLog={setShowLog}
                 />
 
                 <PadGrid
@@ -213,10 +215,43 @@ function App() {
                 </PadGrid>
             </div>
 
-            <div className="midi-log-wrapper" style={{ padding: '0 30px 30px' }}>
-                <MidiLog logs={midiLogs} clearLogs={clearLogs} />
-            </div>
+            {/* MIDI Log Popup */}
+            {showLog && (
+                <div className="midi-log-popup-overlay">
+                    <div className="midi-log-popup">
+                        <div className="popup-header">
+                            <h3>MIDI Debug Log</h3>
+                            <button className="close-btn" onClick={() => setShowLog(false)}>×</button>
+                        </div>
+                        <MidiLog logs={midiLogs} clearLogs={clearLogs} />
+                    </div>
+                </div>
+            )}
 
+
+            <div style={{ textAlign: 'center', padding: '12px', background: 'rgba(30, 41, 59, 0.5)', borderTop: '1px solid #334155' }}>
+                <a
+                    href="https://open.spotify.com/track/3fJGIfvXYZQPMZoEZCn9D5?si=b208c953bb7f4c14"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                        color: '#22c55e',
+                        textDecoration: 'none',
+                        fontWeight: '600',
+                        fontSize: '14px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '8px',
+                        transition: 'color 0.2s'
+                    }}
+                    onMouseOver={(e) => e.target.style.color = '#4ade80'}
+                    onMouseOut={(e) => e.target.style.color = '#22c55e'}
+                >
+                    <span style={{ fontSize: '16px' }}>🎵</span>
+                    Listen to the New Release on Spotify
+                </a>
+            </div>
             <div className="footer">
                 MIDIONYX patch changer | Unlimited Pages | Web MIDI API | Works with Chrome, Edge, Opera
             </div>
